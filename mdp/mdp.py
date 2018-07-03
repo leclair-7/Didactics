@@ -31,9 +31,12 @@ class State:
 		self.id = title
 		self.outNodes = {}
 		self.reward = reward
+
+		self.VS = 2
+
+
 	def getVS(self):
-		value = self.reward
-		for k,v in self.outNodes:
+		 return self.VS
 
 	def getReward(self):
 		return self.reward
@@ -44,6 +47,12 @@ class State:
 		else:
 			print("You already have this node in the MDP")
 
+		# Update the v( s ) as we are presently capable of knowing
+		value = self.reward
+
+		for k,v in self.outNodes.items():
+			value += gamma * 1
+
 	def getid(self):
 		return self.id
 
@@ -52,8 +61,6 @@ class State:
 			return False
 		else:
 			return self.outNodes[destination]
-
-
 
 facebook = State("facebook", -1)
 class1   = State("class 1", -2)
@@ -95,5 +102,6 @@ for i, v in enumerate([class1,class2,class3,epass,sleep]):
 
 print("G_temp",G_temp)
 
-
+print("Using hasattr")
+print(hasattr(class3,'frog'))
 
