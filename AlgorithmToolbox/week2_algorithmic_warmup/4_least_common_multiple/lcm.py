@@ -1,15 +1,32 @@
 # Uses python3
 import sys
 
-def lcm_naive(a, b):
-    for l in range(1, a*b + 1):
-        if l % a == 0 and l % b == 0:
-            return l
+def gcd_euclid(a, b):
+    
+    if b==0:
+    	return a
+    
+    a_prime = a % b
 
-    return a*b
+    return gcd_euclid(b,a_prime)
+
+def lcm_lucas(a, b):
+
+	gc = gcd_euclid(a, b)
+
+	result = max(a,b) * (min(a,b)//gc)
+	return result
 
 if __name__ == '__main__':
     input = sys.stdin.read()
     a, b = map(int, input.split())
-    print(lcm_naive(a, b))
+    print(lcm_lucas(a, b))
+'''
+a,b = 28851538, 1183019
+gc = lcm_lucas(a, b)
+print(gc  )
 
+a,b = 6,8
+gc = lcm_lucas(a, b)
+print(gc )
+'''
