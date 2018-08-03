@@ -12,9 +12,11 @@ def optimal_sequence(n):
         else:
             n = n - 1
     return reversed(sequence)
-
+'''
 input = sys.stdin.read()
 n = int(input)
+'''
+n=96234
 sequence = list(optimal_sequence(n))
 print(len(sequence) - 1)
 for x in sequence:

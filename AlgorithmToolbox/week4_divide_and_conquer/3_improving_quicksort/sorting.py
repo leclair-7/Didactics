@@ -2,19 +2,25 @@
 import sys
 import random
 
-def partition3(a, l, r):
-    #write your code here
-    pass
+def partition3(a, l, r):   
 
-def partition2(a, l, r):
+    i=l    
+    less_than,greater_than = l,r
     x = a[l]
-    j = l;
-    for i in range(l + 1, r + 1):
-        if a[i] <= x:
-            j += 1
-            a[i], a[j] = a[j], a[i]
-    a[l], a[j] = a[j], a[l]
-    return j
+
+    while i <= greater_than:
+        if a[i] < x:
+            a[less_than], a[i] = a[i], a[less_than]
+            less_than += 1
+            i += 1
+        elif a[i] > x:
+            a[i], a[greater_than] = a[greater_than], a[i]
+            greater_than -= 1
+        else:
+            i += 1
+    return less_than, greater_than 
+
+
 
 
 def randomized_quick_sort(a, l, r):
@@ -23,9 +29,9 @@ def randomized_quick_sort(a, l, r):
     k = random.randint(l, r)
     a[l], a[k] = a[k], a[l]
     #use partition3
-    m = partition2(a, l, r)
+    m,k = partition3(a, l, r)
     randomized_quick_sort(a, l, m - 1);
-    randomized_quick_sort(a, m + 1, r);
+    randomized_quick_sort(a, k+1, r);
 
 
 if __name__ == '__main__':
@@ -34,3 +40,16 @@ if __name__ == '__main__':
     randomized_quick_sort(a, 0, n - 1)
     for x in a:
         print(x, end=' ')
+    '''
+    #a = [2,3,9,4,5,6,7,8,7,6,5,4,2,2,]
+    #a = [2, 2, 2, 6, 5, 6, 5, 3, 7, 9, 8]
+    #randomized_quick_sort(a,0,len(a)-1)
+    #print(a)
+    
+    #u,v = partition3(a)
+
+    '''
+
+    
+
+    
